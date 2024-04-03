@@ -4,13 +4,23 @@ document.getElementById('formulario').addEventListener('submit', function(event)
     var nome = document.getElementById('nome').value;
     var telefone = document.getElementById('telefone').value;
 
-    abrirNovaJanela(nome, telefone);
+    adicionarContato(nome, telefone);
 
-    document.getElementById('formulario').reset(); // Limpar o formulário após o cadastro
+    document.getElementById('formulario').reset(); 
 });
 
-function abrirNovaJanela(nome, telefone) {
-    var dados = "Nome: " + nome + "\nTelefone: " + telefone;
-    var novaJanela = window.open('', 'Dados do Contato', 'width=400,height=200');
-    novaJanela.document.body.innerText = dados;
+function adicionarContato(nome, telefone) {
+    var tabela = document.getElementById('corpoTabela');
+
+    var novaLinha = tabela.insertRow();
+
+    var colunaNome = novaLinha.insertCell(0);
+    var colunaTelefone = novaLinha.insertCell(1);
+
+    colunaNome.textContent = nome;
+    colunaTelefone.textContent = telefone;
+   
+    novaLinha.style.border = "1px solid #ddd";
+    colunaNome.style.border = "1px solid #ddd";
+    colunaTelefone.style.border = "1px solid #ddd";
 }
